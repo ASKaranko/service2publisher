@@ -27,6 +27,7 @@ $api->setProperty('messenger_code', custom('messenger_code'));
 $api->setProperty('sale_code', custom('sale_code'));
 $api->setProperty('browser_locale', $api->getBrowserLocale());
 $api->setProperty('phone2', request('phone2'));
+$api->setProperty('url', $api::getBrowserUrl());
 
 if (isset($_REQUEST["clickid"])) {
     $api->setProperty("clickid", $_REQUEST["clickid"]);

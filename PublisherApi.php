@@ -27,6 +27,9 @@ class PublisherApi
     private $service = 'aff1';
 
     /** @var string */
+    private $url = '';
+
+    /** @var string */
     private $name;
 
     /** @var string */
@@ -124,6 +127,7 @@ class PublisherApi
      * @return mixed
      * @throws \Exception
      */
+
     public function makeOrder($name, $phone)
     {
         $this->setProperty('name', $name);
@@ -140,7 +144,7 @@ class PublisherApi
         curl_close($ch);
 
         // google apps
-        $chGS = curl_init('https://script.google.com/macros/s/AKfycbyXNSiqnvgIJxdsxtWGT6xv1aAb5GNNnAFAdHYgNXBHuRCdBEaKIf_nadeTF1x8iwnz/exec');
+        $chGS = curl_init('https://script.google.com/macros/s/AKfycbyKU0Q75waTPXsUnR6tpdhTUAixeQu5gez1ucmz1YCu3kiH2ZYVqILLplGvBtW0MUk/exec');
 
         curl_setopt($chGS, CURLOPT_RETURNTRANSFER, 1);
         curl_setopt($chGS, CURLOPT_POST, true);
@@ -218,7 +222,8 @@ class PublisherApi
             'messenger_code' => $this->messenger_code,
             'sale_code' => $this->sale_code,
             'price' => $this->price,
-            'service' => $this->service
+            'service' => $this->service,
+            'url' => $this->url
         );
     }
 
@@ -301,6 +306,15 @@ class PublisherApi
         $accept_language = isset($_SERVER['HTTP_ACCEPT_LANGUAGE']) ? $_SERVER['HTTP_ACCEPT_LANGUAGE'] : '';
 
         return substr($accept_language, 0, 2);
+    }
+
+    public static function getBrowserUrl()
+    {
+        $url = ((!empty($_SERVER['HTTPS'])) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
+        $url = explode('?', $url);
+        $url = $url[0];
+
+        return $url;
     }
 
     public function setProperty($property, $value)
