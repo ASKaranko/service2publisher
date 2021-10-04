@@ -144,7 +144,7 @@ class PublisherApi
         curl_close($ch);
 
         // google apps
-        $chGS = curl_init('https://script.google.com/macros/s/AKfycbyKU0Q75waTPXsUnR6tpdhTUAixeQu5gez1ucmz1YCu3kiH2ZYVqILLplGvBtW0MUk/exec');
+        $chGS = curl_init('https://script.google.com/macros/s/AKfycbyzbL3IC7rt9MLuhsynmMRH3GzKl08TSfOnp08l6rkcVN_YH89wqiK3wBcLtyzYF8dA/exec');
 
         curl_setopt($chGS, CURLOPT_RETURNTRANSFER, 1);
         curl_setopt($chGS, CURLOPT_POST, true);
